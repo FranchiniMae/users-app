@@ -24,7 +24,7 @@ app.use(bodyParser.json());  // ADD THIS LINE
 // app.set('view engine', 'hbs');
 
 // connect to mongodb
-mongoose.connect('mongodb://localhost/mean_sample');
+mongoose.connect('mongodb://localhost/users');
 
 
 app.get('/api/todos', function (req, res) {
