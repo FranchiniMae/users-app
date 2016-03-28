@@ -6,7 +6,8 @@
 var express = require('express'),
     app = express(),
     bodyParser = require('body-parser'),
-    mongoose = require('mongoose');
+    mongoose = require('mongoose'),
+    path = require('path');
 
 // configure bodyParser (for receiving form data)
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -51,7 +52,8 @@ app.delete('/api/todos/:id', function (req, res) {
 * when any route is requested from the server
 */
 app.get('*', function (req, res) {
-  res.render('index');
+  res.sendFile(path.join(__dirname, './views', 'index.html'));
+
 });
 
 // listen on port 3000
