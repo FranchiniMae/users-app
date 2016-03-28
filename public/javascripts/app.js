@@ -32,7 +32,7 @@ function UsersCtrl($scope, $http) {
   	$scope.userNotFound = false;
   	$scope.loaded = false;
 
-  	$http.get("https://api.github.com/users/" + $scope.username)
+  $http.get("https://api.github.com/users/" + $scope.username)
   	.success(function (data) {
   		$scope.user = data;
   		$scope.loaded = true;
@@ -40,9 +40,14 @@ function UsersCtrl($scope, $http) {
   	.error(function () {
   		$scope.userNotFound = true;
   	});
-  };
-}
 
+  $http.get("https://api.github.com/users/" + $scope.username + "/repos")
+  	.success(function (data) {
+    $scope.repos = data;
+    $scope.reposFound = data.length > 0;
+}); 
+};
+}
 
 
 app.service('User', function($resource) {

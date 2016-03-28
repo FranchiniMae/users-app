@@ -1,5 +1,5 @@
 <div>
-    <h1>Simple Github API Webapp</h1>
+    <h1>Send Comments to Github Users</h1>
     <p>Enter a single Github username below and click the button to display profile info.</p>
 
     <input type="text" id="ghusername" ng-model="username" placeholder="Github username...">
@@ -19,4 +19,17 @@
       </div>
       Followers: {{ user.followers }} - Following: {{ user.following }}<br>Repos: {{ user.public_repos }}</p>
    </div>
+
+   <div class="repolist clearfix">
+    <p ng-hide="reposFound">No repos!</p>
+ 
+    <div ng-show="reposFound">
+        <p><strong>Repos List:</strong></p>
+        <ul ng-repeat="repo in repos">
+            <li><a href="{{repo.html_url}}" target="_blank"> {{repo.name}} </a></li>
+        </ul>
+    </div>
 </div>
+</div>
+
+
