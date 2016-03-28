@@ -1,4 +1,5 @@
-var app = angular.module('usersApp', ['ui.router']);
+console.log('app.js loaded!');
+var app = angular.module('usersApp', ['ui.router', 'ngResource']);
 
 app.config(config);
 
@@ -16,16 +17,38 @@ function config($stateProvider, $urlRouterProvider, $locationProvider) {
      $stateProvider
       .state('home', {
         url: "/",
-        controller: 'HomeController',
-        controllerAs: 'home',
-        templateUrl: "templates/home.html"
+        controller: 'UsersCtrl',
+        controllerAs: 'Users',
+        templateUrl: "templates/users-index.html"
         // template: 'Home!'
       });
   }
 
- app.controller('HomeController', HomeController);
+ app.controller('UsersCtrl', UsersCtrl);
 
-function HomeController() {
+function UsersCtrl($scope, $http) {
   var vm = this;
-  vm.homeTest = "Welcome to the homepage!";
+  $scope.getGitInfo = function () {
+  	$scope.userNotFound = false;
+  	$scope.loaded = false;
+
+  	$http.get("https://api.github.com/users/" + $scope.username)
+  	.success(function (data) {
+  		$scope.user = data;
+  		$scope.loaded = true;
+  	})
+  	.error(function () {
+  		$scope.userNotFound = true;
+  	});
+  };
 }
+
+
+
+app.service('User', function($resource) {
+  return $resource('http://localhost:3000/api/users/:id', { id: '@_id' }, {
+    update: {
+      method: 'PUT' // this method issues a PUT request
+    }
+  });
+});

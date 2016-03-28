@@ -27,25 +27,25 @@ app.use(bodyParser.json());  // ADD THIS LINE
 mongoose.connect('mongodb://localhost/users');
 
 
-app.get('/api/todos', function (req, res) {
+// app.get('/api/todos', function (req, res) {
 
-});
+// });
 
-app.post('/api/todos', function (req, res) {
+// app.post('/api/todos', function (req, res) {
 
-});
+// });
 
-app.get('/api/todos/:id', function (req, res) {
+// app.get('/api/todos/:id', function (req, res) {
 
-});
+// });
 
-app.put('/api/todos/:id', function (req, res) {
+// app.put('/api/todos/:id', function (req, res) {
 
-});
+// });
 
-app.delete('/api/todos/:id', function (req, res) {
+// app.delete('/api/todos/:id', function (req, res) {
  
-});
+// });
 
 /*
 * Load `views/index.hbs` file
